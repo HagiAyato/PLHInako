@@ -4,7 +4,12 @@
 	// 標準入力取得
 	var arg = "";//document.forms["code"].elements["()"].value;
 	// 実行結果を出力
-	document.forms["code"].elements["console"].value = brainfuck(code, arg);
+	document.forms["code"].elements["console"].value = brainfuck(hinakoToBF(code), arg);
+}
+
+function hinakoToBF(hinakoCode){
+	let bfCode = hinakoCode;
+	return bfCode;
 }
 
 function brainfuck(code, arg) {
@@ -38,7 +43,7 @@ function brainfuck(code, arg) {
 				ptr--;
 				break;
 			case "+":
-				// ポインタが指す値をインクリメントする。(*ptr)++;
+				// ポインタが指す値をインクリメントする。((*ptr)++;)
 				data[ptr] += 1;
 				break;
 			case "-":
