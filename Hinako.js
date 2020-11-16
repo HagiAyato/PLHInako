@@ -7,8 +7,49 @@
 	document.forms["code"].elements["console"].value = brainfuck(hinakoToBF(code), arg);
 }
 
-function hinakoToBF(hinakoCode){
-	let bfCode = hinakoCode;
+function hinakoToBF(codeString){
+	let bfCode = "";// ここにbrainf*ckに変換されたソースコードが入る。
+	let counter = 0;
+	let order = [ "むふふふふ", "むふふふ", "むふふ", "むふ", "♪", "！", "日菜子は～", "王子様～" ];
+	// Hinako→Brainf*ckの変換処理本体
+	while (counter < codeString.length) {
+		if (codeString.startsWith(order[0], counter)) {
+			// むふふふふ → >
+			bfCode += ">";
+			counter += order[0].length;
+		} else if (codeString.startsWith(order[1], counter)) {
+			// むふふふ → <
+			bfCode += "<";
+			counter += order[1].length;
+		} else if (codeString.startsWith(order[2], counter)) {
+			// むふふ → +
+			bfCode += "+";
+			counter += order[2].length;
+		} else if (codeString.startsWith(order[3], counter)) {
+			// むふ → -
+			bfCode += "-";
+			counter += order[3].length;
+		} else if (codeString.startsWith(order[4], counter)) {
+			// ♪ → .
+			bfCode += ".";
+			counter += order[4].length;
+		} else if (codeString.startsWith(order[5], counter)) {
+			// ！ → ,
+			bfCode += ",";
+			counter += order[5].length;
+		} else if (codeString.startsWith(order[6], counter)) {
+			// 日菜子は～ → [
+			bfCode += "[";
+			counter += order[6].length;
+		} else if (codeString.startsWith(order[7], counter)) {
+			// 王子様～ → ]
+			bfCode += "]";
+			counter += order[7].length;
+		} else {
+			// 命令に該当しない箇所は飛ばす
+			counter++;
+		}
+	}
 	return bfCode;
 }
 
