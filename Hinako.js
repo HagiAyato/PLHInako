@@ -1,16 +1,25 @@
 ﻿function hinako() {
 	// コード取得
 	var code = document.forms["code"].elements["input"].value;
+	code = (code == null) ? "" : code;
 	// 標準入力取得
-	var arg = "";//document.forms["code"].elements["()"].value;
+	var arg = document.forms["code"].elements["arg"].value;
+	arg = (arg == null) ? "" : arg;
+	// 標準入力が1バイト文字だけか確認
+	if (arg.match(/^[\x20-\x7e]*$/)) {
+		alert("標準入力に1バイト文字以外を入れないでください。");
+	}
 	// 実行結果を出力
-	document.forms["code"].elements["console"].value = brainfuck(hinakoToBF(code), arg);
+	var bfcode = hinakoToBF(code);
+	console.log('bfcode:' + bfcode);
+	console.log('arg:' + arg);
+	document.forms["code"].elements["console"].value = brainfuck(bfcode, arg);
 }
 
-function hinakoToBF(codeString){
+function hinakoToBF(codeString) {
 	let bfCode = "";// ここにbrainf*ckに変換されたソースコードが入る。
 	let counter = 0;
-	let order = [ "むふふふふ", "むふふふ", "むふふ", "むふ", "♪", "！", "日菜子は～", "王子様～" ];
+	let order = ["むふふふふ", "むふふふ", "むふふ", "むふ", "♪", "！", "日菜子は～", "王子様～"];
 	// Hinako→Brainf*ckの変換処理本体
 	while (counter < codeString.length) {
 		if (codeString.startsWith(order[0], counter)) {
@@ -55,11 +64,12 @@ function hinakoToBF(codeString){
 
 function brainfuck(code, arg) {
 	// 入力コード
-	input = code.split("");
+	let input = code.split("");
 	// コンソール出力
 	let output = "";
 	// ポインタ
 	let ptr = 0;
+	let argptr = 0;
 	let data = [0, null];
 	let bracketIdex = [];
 	let skipCounter = 0;
@@ -74,7 +84,7 @@ function brainfuck(code, arg) {
 			case ">":
 				// ポインタをインクリメントする。(ptr++;)
 				ptr++;
-				if(data[ptr] == null){
+				if (data[ptr] == null) {
 					data[ptr] = 0;
 					data.push(null);
 				}
@@ -97,23 +107,27 @@ function brainfuck(code, arg) {
 				break;
 			case ",":
 				// 入力から1バイト読み込んで、ポインタが指す先に代入する。(*ptr=getchar();)
+				if(argptr < arg.length){
+					data[ptr] = arg.charCodeAt(argptr);
+					argptr++;
+				}
 				break;
 			case "[":
 				// ポインタが指す値が0なら、対応する ] の直後にジャンプする。(while(*ptr){)
-				if(data[ptr] != 0){
+				if (data[ptr] != 0) {
 					bracketIdex.push(i);
-				}else{
+				} else {
 					skipCounter++;
 				}
 				break;
 			case "]":
 				// ポインタが指す値が0でないなら、対応する [ （の直後[1]）にジャンプする。(})
-				if(data[ptr] != 0){
+				if (data[ptr] != 0) {
 					i = bracketIdex.pop() - 1;
-				}else{
-					if(skipCounter == 0){
+				} else {
+					if (skipCounter == 0) {
 						bracketIdex.pop();
-					}else{
+					} else {
 						skipCounter--;
 					}
 				}
