@@ -6,8 +6,10 @@
 	var arg = document.forms["code"].elements["arg"].value;
 	arg = (arg == null) ? "" : arg;
 	// 標準入力が1バイト文字だけか確認
-	if (arg.match(/^[\x20-\x7e]*$/)) {
+	if (!arg.match(/^[\x20-\x7e]*$/)) {
 		alert("標準入力に1バイト文字以外を入れないでください。");
+		// 強制終了
+		return;
 	}
 	// 実行結果を出力
 	var bfcode = hinakoToBF(code);
