@@ -1,4 +1,7 @@
-﻿function hinako() {
+﻿// Hinakoの言語仕様(ここを変えると好きな言語にできる)
+let order = ["むふふふふ", "むふふふ", "むふふ", "むふ", "♪", "！", "日菜子は～", "王子様～"];
+
+function executeHinako() {
 	// コード取得
 	var code = document.forms["code"].elements["input"].value;
 	code = (code == null) ? "" : code;
@@ -12,10 +15,33 @@
 	document.forms["code"].elements["console"].value = brainfuck(bfcode, arg);
 }
 
+function executeBF() {
+	// コード取得
+	var bfcode = document.forms["code"].elements["inputBF"].value;
+	bfcode = (bfcode == null) ? "" : bfcode;
+	// 標準入力取得
+	var arg = document.forms["code"].elements["arg"].value;
+	arg = (arg == null) ? "" : arg;
+	console.log('bfcode:' + bfcode);
+	console.log('arg:' + arg);
+	document.forms["code"].elements["console"].value = brainfuck(bfcode, arg);
+}
+
+function hinakoToBFUI() {
+	// コード取得
+	var code = document.forms["code"].elements["input"].value;
+	document.forms["code"].elements["inputBF"].value = hinakoToBF(code);
+}
+
+function BFToHinakoUI() {
+	// コード取得
+	var code = document.forms["code"].elements["inputBF"].value;
+	document.forms["code"].elements["input"].value = BFToHinako(code);
+}
+
 function hinakoToBF(codeString) {
 	let bfCode = "";// ここにbrainf*ckに変換されたソースコードが入る。
 	let counter = 0;
-	let order = ["むふふふふ", "むふふふ", "むふふ", "むふ", "♪", "！", "日菜子は～", "王子様～"];
 	// Hinako→Brainf*ckの変換処理本体
 	while (counter < codeString.length) {
 		if (codeString.startsWith(order[0], counter)) {
@@ -56,6 +82,43 @@ function hinakoToBF(codeString) {
 		}
 	}
 	return bfCode;
+}
+
+function BFToHinako(codeString) {
+	let input = codeString.split("");
+	let hinakoCode = "";// ここにhinakoに変換されたソースコードが入る。
+	// Brainf*ck→Hinakoの変換処理本体
+	// コード長ループ
+	for (let i = 0; i < input.length; i++) {
+		//処理本体
+		switch (input[i]) {
+			case ">":
+				hinakoCode += order[0];
+				break;
+			case "<":
+				hinakoCode += order[1];
+				break;
+			case "+":
+				hinakoCode += order[2];
+				break;
+			case "-":
+				hinakoCode += order[3];
+				break;
+			case ".":
+				hinakoCode += order[4];
+				break;
+			case ",":
+				hinakoCode += order[5];
+				break;
+			case "[":
+				hinakoCode += order[6];
+				break;
+			case "]":
+				hinakoCode += order[7];
+				break;
+		}
+	}
+	return hinakoCode;
 }
 
 function brainfuck(code, arg) {
@@ -103,7 +166,7 @@ function brainfuck(code, arg) {
 				break;
 			case ",":
 				// 入力から1バイト読み込んで、ポインタが指す先に代入する。(*ptr=getchar();)
-				if(argptr < arg.length){
+				if (argptr < arg.length) {
 					data[ptr] = arg.charCodeAt(argptr);
 					argptr++;
 				}
