@@ -1,6 +1,4 @@
 ﻿---
-title: プログラミング言語 Hinako
-description: brainf*ckをベースに実装した、喜多日菜子(アイドルマスターシンデレラガールズのアイドル)の妄想でコードを書くプログラミング言語。
 layout: default
 ---
 <!DOCTYPE html>
@@ -20,13 +18,13 @@ layout: default
 	<script type="text/javascript" src="Hinako.js">
 	</script>
 	<title>
-		{% if page.title %}
-		{{ page.title }}
+		{% if site.title %}
+		{{ site.title }}
 		{% else %}
 		Default Page Title
 		{% endif %}
 	</title>
-	{% if page.description %}
+	{% if site.description %}
 	<meta name="description" content="{{ page.description}}" />
 	{% endif %}
 	{% seo %}
