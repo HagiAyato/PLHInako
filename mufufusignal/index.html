@@ -24,7 +24,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!-- モールス信号.js -->
-    <script src="script/jquery.morse.js"></script>
+    <script src="script/morse.js"></script>
     <script src="script/mufufusignal.js"></script>
     <link rel="stylesheet" href="css/mufufusignal.css" />
     </script>
@@ -44,7 +44,19 @@
 
 <body>
     <div class="container-fluid">
-        <p>aaaa</p>
+        <form name="morse">
+            <p>変換前</p>
+            <textarea id="src" rows="5" cols="50"></textarea>
+            <br/>
+            <input type="button" value="カタカナ->モールス符号" onClick="buttonClick(Mufufu.JEncode)">
+            <input type="button" value="モールス符号->カタカナ" onClick="buttonClick(Mufufu.JDecode)">
+            <input type="button" value="モールス符号->むふ～ふ信号" onClick="buttonClick(Mufufu.MEncode)">
+            <input type="button" value="むふ～ふ信号->モールス符号" onClick="buttonClick(Mufufu.MDecode)"><br/>
+            <input type="button" value="カタカナ->むふ～ふ信号" onClick="buttonClick(Mufufu.MJEncode)">
+            <input type="button" value="むふ～ふ信号->カタカナ" onClick="buttonClick(Mufufu.MJDecode)">
+            <p>変換後</p>
+            <textarea id="dest" rows="5" cols="50"></textarea>
+        </form>
     </div>
 </body>
 
@@ -52,16 +64,16 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-footer">
-				<h3>リンク</h3>
-				<h4>モールス関係</h4>
-				<a href="https://ja.wikipedia.org/wiki/Brainfuck"> Brainfuck - ウィキペディア</a><br />
-				<a href="https://qiita.com/ss02jp/items/97ac8d3af6c2d6bc7b9b"> Brainf*ckコード メモ　※サンプルコード集</a>
-				<h4>喜多日菜子関係</h4>
-				<a href="https://seesaawiki.jp/kita_hinako/"> 喜多日菜子wiki ~ひなこぺでぃあ~ - Seesaa Wiki</a><br />
-				<a href="https://adventar.org/calendars/5353"> 喜多日菜子 Advent Calendar 2020</a>
-				<h4>製作者関係</h4>
-				<a href="https://hagiayato.github.io/my-site/"> 製作者のサイト "HA Works"</a><br />
-				<a href="https://github.com/HagiAyato/PLHInako"> このwebアプリのソースコード(github)</a><br />
+                <h3>リンク</h3>
+                <h4>モールス関係</h4>
+                <a href="https://ja.wikipedia.org/wiki/Brainfuck"> Brainfuck - ウィキペディア</a><br />
+                <a href="https://qiita.com/ss02jp/items/97ac8d3af6c2d6bc7b9b"> Brainf*ckコード メモ　※サンプルコード集</a>
+                <h4>喜多日菜子関係</h4>
+                <a href="https://seesaawiki.jp/kita_hinako/"> 喜多日菜子wiki ~ひなこぺでぃあ~ - Seesaa Wiki</a><br />
+                <a href="https://adventar.org/calendars/5353"> 喜多日菜子 Advent Calendar 2020</a>
+                <h4>製作者関係</h4>
+                <a href="https://hagiayato.github.io/my-site/"> 製作者のサイト "HA Works"</a><br />
+                <a href="https://github.com/HagiAyato/PLHInako"> このwebアプリのソースコード(github)</a><br />
             </div>
         </div>
     </nav>
