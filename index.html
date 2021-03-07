@@ -13,99 +13,123 @@
 	</script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="Hinako.js">
 	</script>
 	<title>プログラミング言語 Hinako</title>
 	<meta name="description" content="brainf*ckをベースに実装した、喜多日菜子(アイドルマスターシンデレラガールズのアイドル)の妄想でコードを書くプログラミング言語。" />
 </head>
 
-<body>
-	<header>
-		<h1>プログラミング言語 Hinako</h1>
-		<p>brainf*ckをベースに実装した、日菜子の妄想でコードを書くプログラミング言語です。</p>
-		<p>【注意】Internet Explorerでは正しく動作しません。</p>
-	</header>
-	<p>命令一覧(C言語における対応する文)</p>
-	<ul>
-		<li>むふふふふ：ポインタをインクリメントする。(ptr++;)</li>
-		<li>むふふふ：ポインタをデクリメントする。(ptr--;)</li>
-		<li>むふふ：ポインタが指す値をインクリメントする。((*ptr)++;)</li>
-		<li>むふ：ポインタが指す値をデクリメントする。((*ptr)--;)</li>
-		<li>♪：ポインタが指す値を出力に書き出す。(putchar(*ptr);)</li>
-		<li>！：入力から1バイト読み込んで、ポインタが指す先に代入する。(*ptr=getchar();)</li>
-		<li>日菜子は～：ポインタが指す値が0なら、対応する ] の直後にジャンプする。(while(*ptr){)</li>
-		<li>王子様～：ポインタが指す値が0でないなら、対応する [ （の直後[1]）にジャンプする。(})</li>
-		<li>それ以外の文字：コメント扱い</li>
-	</ul>
-	<a href="https://hagiayato.github.io/my-site/jekyll/update/2020/12/16/PLHinako.html"> この言語の説明はこちらも参照[妄想言語「Hinako」でプログラミング #喜多日菜子アドカレ2020]</a><br />
-	<form name="code">
-		<table>
-			<tr>
-				<td>
-					<h4>Hinakoコード入力欄</h4>
-				</td>
-				<td></td>
-				<td>
-					<h4>Brainf*ckコード入力欄</h4>
-				</td>
-			</tr>
-			<tr>
-				<td rowspan="2">
-					<textarea name="input" rows="10" cols="90"></textarea><br />
-				</td>
-				<td><input type="button" onClick="hinakoToBFUI()" value="→" /></td>
-				<td rowspan="2">
-					<textarea name="inputBF" rows="10" cols="90"></textarea><br />
-				</td>
-			</tr>
-			<tr>
-				<td><input type="button" onClick="BFToHinakoUI()" value="←" /></td>
-			</tr>
-			<tr>
-				<td colspan="3">
-					<h4>標準入力</h4>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3">
-					<textarea name="arg" rows="1" cols="100"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="button" onClick="executeHinako()" value="Hinakoコードを実行します～" />
-				</td>
-				<td>
+<header>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<h1>プログラミング言語 Hinako</h1>
+				<p>brainf*ckをベースに実装した、日菜子の妄想でコードを書くプログラミング言語です。</p>
+				<p>【注意】Internet Explorerでは正しく動作しません。</p>
+			</div>
+		</div>
+	</nav>
+</header>
 
-				</td>
-				<td>
-					<input type="button" onClick="executeBF()" value="Brainf*ckコードを実行" />
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3">
-					<h4>実行結果</h4>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3">
-					<textarea name="console" rows="10" cols="150"></textarea>
-				</td>
-			</tr>
-		</table>
-	</form>
-	<footer>
-		<h3>リンク</h3>
-		<h4>言語関係</h4>
-		<a href="https://ja.wikipedia.org/wiki/Brainfuck"> Brainfuck - ウィキペディア</a><br />
-		<a href="https://qiita.com/ss02jp/items/97ac8d3af6c2d6bc7b9b"> Brainf*ckコード メモ　※サンプルコード集</a>
-		<h4>喜多日菜子関係</h4>
-		<a href="https://seesaawiki.jp/kita_hinako/"> 喜多日菜子wiki ~ひなこぺでぃあ~ - Seesaa Wiki</a><br />
-		<a href="https://adventar.org/calendars/5353"> 喜多日菜子 Advent Calendar 2020</a>
-		<h4>製作者関係</h4>
-		<a href="https://hagiayato.github.io/my-site/"> 製作者のサイト "HA Works"</a><br />
-		<a href="https://github.com/HagiAyato/PLHInako"> このwebアプリのソースコード(github)</a><br />
-	</footer>
+<body>
+	<div class="container-fluid">
+		<p>命令一覧(C言語における対応する文)</p>
+		<ul>
+			<li>むふふふふ：ポインタをインクリメントする。(ptr++;)</li>
+			<li>むふふふ：ポインタをデクリメントする。(ptr--;)</li>
+			<li>むふふ：ポインタが指す値をインクリメントする。((*ptr)++;)</li>
+			<li>むふ：ポインタが指す値をデクリメントする。((*ptr)--;)</li>
+			<li>♪：ポインタが指す値を出力に書き出す。(putchar(*ptr);)</li>
+			<li>！：入力から1バイト読み込んで、ポインタが指す先に代入する。(*ptr=getchar();)</li>
+			<li>日菜子は～：ポインタが指す値が0なら、対応する ] の直後にジャンプする。(while(*ptr){)</li>
+			<li>王子様～：ポインタが指す値が0でないなら、対応する [ （の直後[1]）にジャンプする。(})</li>
+			<li>それ以外の文字：コメント扱い</li>
+		</ul>
+		<a href="https://hagiayato.github.io/my-site/jekyll/update/2020/12/16/PLHinako.html">
+			この言語の説明はこちらも参照[妄想言語「Hinako」でプログラミング #喜多日菜子アドカレ2020]</a><br />
+		<form name="code">
+			<table>
+				<tr>
+					<td>
+						<h4>Hinakoコード入力欄</h4>
+					</td>
+					<td></td>
+					<td>
+						<h4>Brainf*ckコード入力欄</h4>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2">
+						<textarea name="input" rows="10" cols="90"></textarea><br />
+					</td>
+					<td><input type="button" onClick="hinakoToBFUI()" value="→" /></td>
+					<td rowspan="2">
+						<textarea name="inputBF" rows="10" cols="90"></textarea><br />
+					</td>
+				</tr>
+				<tr>
+					<td><input type="button" onClick="BFToHinakoUI()" value="←" /></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<h4>標準入力</h4>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<textarea name="arg" rows="1" cols="100"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" onClick="executeHinako()" value="Hinakoコードを実行します～" />
+					</td>
+					<td>
+
+					</td>
+					<td>
+						<input type="button" onClick="executeBF()" value="Brainf*ckコードを実行" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<h4>実行結果</h4>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<textarea name="console" rows="10" cols="150"></textarea>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
+
+<footer>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-footer">
+				<h3>リンク</h3>
+				<h4>言語関係</h4>
+				<a href="https://ja.wikipedia.org/wiki/Brainfuck"> Brainfuck - ウィキペディア</a><br />
+				<a href="https://qiita.com/ss02jp/items/97ac8d3af6c2d6bc7b9b"> Brainf*ckコード メモ　※サンプルコード集</a>
+				<h4>喜多日菜子関係</h4>
+				<a href="https://seesaawiki.jp/kita_hinako/"> 喜多日菜子wiki ~ひなこぺでぃあ~ - Seesaa Wiki</a><br />
+				<a href="https://adventar.org/calendars/5353"> 喜多日菜子 Advent Calendar 2020</a>
+				<h4>製作者関係</h4>
+				<a href="https://hagiayato.github.io/my-site/"> 製作者のサイト "HA Works"</a><br />
+				<a href="https://github.com/HagiAyato/PLHInako"> このwebアプリのソースコード(github)</a><br />
+			</div>
+		</div>
+	</nav>
+</footer>
 
 </html>
