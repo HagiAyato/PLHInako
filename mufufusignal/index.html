@@ -23,6 +23,11 @@
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <!-- トグルスイッチプラグイン -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
     <!-- モールス信号.js -->
     <script src="script/morse.js"></script>
     <script src="script/mufufusignal.js"></script>
@@ -49,7 +54,7 @@
             <div class="border p-3" id="readme" style="display:none">
                 <h1>むふ～ふ信号の説明</h1>
                 <h2>概要</h2>
-                むふ～ふ信号とは、喜多日菜子がよく使うセリフ「むふふ」を使って通信する通信方式です。<br/>
+                むふ～ふ信号とは、喜多日菜子がよく使うセリフ「むふふ」を使って通信する通信方式です。<br />
                 伝文のルールはモールス信号と対応しております。
                 <h5>伝文のルール</h5>
                 <ul>
@@ -59,15 +64,21 @@
             </div>
         </div>
         <form name="morse">
+            <p>言語設定</p>
+            カタカナ・数値(JP)
+            <input type="checkbox" id="JPENSW" value="true" data-width="60" data-toggle="toggle" data-on="JP"
+                data-off="EN" data-onstyle="info" data-offstyle="success" onchange="OnPresssJPENSW();" checked>
+            英語・数値(EN)
             <p>変換前</p>
-            <textarea id="src" rows="5" cols="50"></textarea>
-            <br/>
-            <input type="button" value="カタカナ->モールス符号" onClick="buttonClick(Mufufu.JEncode)">
-            <input type="button" value="モールス符号->カタカナ" onClick="buttonClick(Mufufu.JDecode)">
+            <!-- アルファベット小文字を自動で大文字化 -->
+            <textarea id="src" rows="5" cols="50" onblur="this.value=this.value.toUpperCase();"></textarea>
+            <br />
+            <input type="button" value="元の文->モールス符号" onClick="buttonClick(Mufufu.JEncode)">
+            <input type="button" value="モールス符号->元の文" onClick="buttonClick(Mufufu.JDecode)">
             <input type="button" value="モールス符号->むふ～ふ信号" onClick="buttonClick(Mufufu.MEncode)">
-            <input type="button" value="むふ～ふ信号->モールス符号" onClick="buttonClick(Mufufu.MDecode)"><br/>
-            <input type="button" value="カタカナ->むふ～ふ信号" onClick="buttonClick(Mufufu.MJEncode)">
-            <input type="button" value="むふ～ふ信号->カタカナ" onClick="buttonClick(Mufufu.MJDecode)">
+            <input type="button" value="むふ～ふ信号->モールス符号" onClick="buttonClick(Mufufu.MDecode)"><br />
+            <input type="button" value="元の文->むふ～ふ信号" onClick="buttonClick(Mufufu.MJEncode)">
+            <input type="button" value="むふ～ふ信号->元の文" onClick="buttonClick(Mufufu.MJDecode)">
             <p>変換後</p>
             <textarea id="dest" rows="5" cols="50"></textarea>
         </form>

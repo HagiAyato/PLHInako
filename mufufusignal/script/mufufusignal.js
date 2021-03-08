@@ -58,7 +58,7 @@ Mufufu.MDecode = function (message) {
 * @param {元の文} message 
 * @returns 
 */
-Mufufu.MJEncode = function (message) { 
+Mufufu.MJEncode = function (message) {
     return Mufufu.MEncode(Morse.JEncode(message));
 };
 
@@ -67,7 +67,7 @@ Mufufu.MJEncode = function (message) {
 * @param {元の文} message 
 * @returns 
 */
-Mufufu.MJDecode = function (message) { 
+Mufufu.MJDecode = function (message) {
     return Morse.JDecode(Mufufu.MDecode(message));
 };
 
@@ -85,4 +85,11 @@ function dispReadme() {
         $('#BTNReadme').text('説明表示▼');
         $('#readme').attr('style', 'display:none');
     }
+}
+
+/**
+ * 言語設定変更時
+ */
+function OnPresssJPENSW() {
+    Morse.isJapanese = $('#JPENSW').prop('checked');
 }
