@@ -70,3 +70,19 @@ Mufufu.MJEncode = function (message) {
 Mufufu.MJDecode = function (message) { 
     return Morse.JDecode(Mufufu.MDecode(message));
 };
+
+var showReadme_flg = false; // 説明表示フラグ
+
+// 説明表示非表示
+function dispReadme() {
+    showReadme_flg = !showReadme_flg
+    if (showReadme_flg) {
+        // readme表示
+        $('#BTNReadme').text('説明非表示△');
+        $('#readme').attr('style', 'display:block');
+    } else {
+        // readme非表示
+        $('#BTNReadme').text('説明表示▼');
+        $('#readme').attr('style', 'display:none');
+    }
+}
