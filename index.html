@@ -22,6 +22,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="Hinako.js">
 	</script>
+	<link rel="stylesheet" href="Hinako.css" />
 	<title>プログラミング言語 Hinako</title>
 	<meta name="description" content="brainf*ckをベースに実装した、喜多日菜子(アイドルマスターシンデレラガールズのアイドル)の妄想でコードを書くプログラミング言語。" />
 </head>
@@ -55,7 +56,12 @@
 		<a href="https://hagiayato.github.io/my-site/jekyll/update/2020/12/16/PLHinako.html">
 			この言語の説明はこちらも参照[妄想言語「Hinako」でプログラミング #喜多日菜子アドカレ2020]</a><br />
 		<form name="code">
-			<table>
+			<table style="width:100%;">
+				<colgroup>
+					<col style="width:49%;"/>
+					<col style="width:2%;"/>
+					<col style="width:49%;"/>
+				</colgroup>
 				<tr>
 					<td>
 						<h4>Hinakoコード入力欄</h4>
@@ -67,11 +73,11 @@
 				</tr>
 				<tr>
 					<td rowspan="2">
-						<textarea name="input" rows="10" cols="90"></textarea><br />
+						<textarea name="input" rows="10"></textarea><br />
 					</td>
 					<td><input type="button" onClick="hinakoToBFUI()" value="→" /></td>
 					<td rowspan="2">
-						<textarea name="inputBF" rows="10" cols="90"></textarea><br />
+						<textarea name="inputBF" rows="10"></textarea><br />
 					</td>
 				</tr>
 				<tr>
@@ -84,7 +90,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						<textarea name="arg" rows="1" cols="100"></textarea>
+						<textarea name="arg" rows="1"></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -105,7 +111,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						<textarea name="console" rows="10" cols="150"></textarea>
+						<textarea name="console" rows="10"></textarea>
 					</td>
 				</tr>
 			</table>
