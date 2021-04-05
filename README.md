@@ -7,3 +7,7 @@ Brainf*ckベースのプログラミング言語、Hinakoを実装
 この言語は、喜多日菜子の妄想でプログラミングができる言語です。
 詳細は自分のサイトに記載しております。  
 [妄想言語「Hinako」でプログラミング #喜多日菜子アドカレ2020](https://hagiayato.github.io/my-site/jekyll/update/2020/12/15/PLHinako.html)
+
+## 「むふ～ふ信号」について
+むふ～ふ信号とは、喜多日菜子がよく使うセリフ「むふふ」を使って通信する通信方式です。
+[実行環境・動作確認はこちら](https://hagiayato.github.io/PLHInako/mufufusignal)

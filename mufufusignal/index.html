@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-181538826-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-185637831-1');
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- トグルスイッチプラグイン -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+    <!-- モールス信号.js -->
+    <script src="script/morse.js"></script>
+    <script src="script/mufufusignal.js"></script>
+    <link rel="stylesheet" href="css/mufufusignal.css" />
+    </script>
+    <title>むふ～ふ信号</title>
+    <meta name="description" content="モールス信号ベースベースの喜多日菜子信号、むふ～ふ信号" />
+</head>
+
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h1>むふ～ふ信号</h1>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<body>
+    <div class="container-fluid">
+        <div class="p-1">
+            <button class="btn" id="BTNReadme" onclick="dispReadme();">説明表示▼</button><br />
+            <div class="border p-3" id="readme" style="display:none">
+                <h1>むふ～ふ信号の説明</h1>
+                <h2>概要</h2>
+                むふ～ふ信号とは、喜多日菜子がよく使うセリフ「むふふ」を使って通信する通信方式です。<br />
+                伝文のルールはモールス信号と対応しております。
+                <h5>伝文のルール</h5>
+                <ul>
+                    <li>むふ…モールス信号の短音「・」に相当</li>
+                    <li>むふふ…モールス信号の長音「－」に相当</li>
+                </ul>
+            </div>
+        </div>
+        <form name="morse">
+            <p>言語設定</p>
+            カタカナ・数値(JP)
+            <input type="checkbox" id="JPENSW" value="true" data-width="60" data-toggle="toggle" data-on="JP"
+                data-off="EN" data-onstyle="info" data-offstyle="success" onchange="OnPresssJPENSW();" checked>
+            英語・数値(EN)
+            <p>変換前</p>
+            <!-- アルファベット小文字を自動で大文字化 -->
+            <textarea id="src" rows="5" cols="50" onblur="this.value=this.value.toUpperCase();"></textarea>
+            <br />
+            <input type="button" value="元の文->モールス符号" onClick="buttonClick(Mufufu.JEncode)">
+            <input type="button" value="モールス符号->元の文" onClick="buttonClick(Mufufu.JDecode)">
+            <input type="button" value="モールス符号->むふ～ふ信号" onClick="buttonClick(Mufufu.MEncode)">
+            <input type="button" value="むふ～ふ信号->モールス符号" onClick="buttonClick(Mufufu.MDecode)"><br />
+            <input type="button" value="元の文->むふ～ふ信号" onClick="buttonClick(Mufufu.MJEncode)">
+            <input type="button" value="むふ～ふ信号->元の文" onClick="buttonClick(Mufufu.MJDecode)">
+            <p>変換後</p>
+            <textarea id="dest" rows="5" cols="50"></textarea>
+        </form>
+    </div>
+</body>
+
+<footer>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-footer">
+                <h3>リンク</h3>
+                <a href="https://hagiayato.github.io/PLHInako/"> プログラミング言語 Hinako("喜多日菜子 Advent Calendar 2020"で公開)</a><br />
+                <h4>モールス関係</h4>
+                <a href="http://www7.plala.or.jp/ax_ono/ham/cw/wabun.htm"> 和文モールスコード表</a><br />
+                <a href="https://valinst.hatenadiary.org/entry/20091114/1258185800"> JavaScript で モールス信号変換</a>
+                <h4>喜多日菜子関係</h4>
+                <a href="https://seesaawiki.jp/kita_hinako/"> 喜多日菜子wiki ~ひなこぺでぃあ~ - Seesaa Wiki</a><br />
+                <h4>製作者関係</h4>
+                <a href="https://hagiayato.github.io/my-site/"> 製作者のサイト "HA Works"</a><br />
+                <a href="https://github.com/HagiAyato/PLHInako/mufufusignal"> このwebアプリのソースコード(github)</a><br />
+            </div>
+        </div>
+    </nav>
+</footer>
+
+</html>
